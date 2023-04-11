@@ -1,4 +1,4 @@
-import { CustomerCreateDto } from "@/entities/customer";
+import { CustomerCreateDto, CustomerFormData } from "@/entities/customer";
 import { BankAccountsForm } from "@/features/bank-accounts-form";
 import { CustomerDetailsForm } from "@/features/customer-details-form";
 import { EmailsForBankAccountForm } from "@/features/emails-for-bank-account-form";
@@ -30,7 +30,7 @@ const initialOrgValue = {
   bank_accounts: initialBankAccountValue,
 };
 
-const initialFormValues: CustomerCreateDto = {
+const initialFormValues: CustomerFormData = {
   name: "",
   credit_limit: 0,
   deferral_days: 0,
@@ -79,13 +79,29 @@ export const CreateCustomerModal: FC<CreateCustomerModalProps> = ({
   close,
   addCustomer,
 }) => {
-  const form = useForm<CustomerCreateDto>({
+  const form = useForm<CustomerFormData>({
     initialValues: initialFormValues,
     validate: validateRules,
   });
 
-  const submitFormHandler = (values: CustomerCreateDto) => {
-    console.log(values);
+  const submitFormHandler = (values: CustomerFormData) => {
+    const metadataValue: Record<string, string> = {};
+    values.metadata.forEach((item) => {
+      metadataValue[item.keyValue] = item.value;
+    });
+
+    const invoiceEmailsValue = values.invoice_emails.map((item) => item.value);
+
+    const dto: CustomerCreateDto = {
+      ...values,
+      invoice_emails: invoiceEmailsValue,
+      metadata: metadataValue,
+      org: { ...values.org },
+    };
+
+    addCustomer(dto);
+    close();
+    form.reset();
   };
   return (
     <Modal opened={opened} onClose={close} title="Создание клиента" centered>

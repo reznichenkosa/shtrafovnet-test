@@ -9,7 +9,7 @@ export const useCustomers = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   const addCustomer = useCallback((newCustomer: CustomerCreateDto) => {
-    addCustomerService(newCustomer).then((response) =>
+    return addCustomerService(newCustomer).then((response) =>
       setCustomers((prevValue) => [...prevValue, response])
     );
   }, []);

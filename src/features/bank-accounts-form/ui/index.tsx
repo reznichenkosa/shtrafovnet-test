@@ -1,4 +1,4 @@
-import { CustomerCreateDto } from "@/entities/customer";
+import { CustomerFormData } from "@/entities/customer";
 import { Button, Flex, Switch, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { randomId } from "@mantine/hooks";
@@ -6,7 +6,7 @@ import { IconTrash } from "@tabler/icons-react";
 import { FC } from "react";
 
 interface BankAccountsFormProps {
-  form: UseFormReturnType<CustomerCreateDto, (values: CustomerCreateDto) => CustomerCreateDto>;
+  form: UseFormReturnType<CustomerFormData, (values: CustomerFormData) => CustomerFormData>;
 }
 
 export const BankAccountsForm: FC<BankAccountsFormProps> = ({ form }) => {

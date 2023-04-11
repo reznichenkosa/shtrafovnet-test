@@ -6,8 +6,8 @@ export const createMockServer = () => {
     routes() {
       this.get("/api/customers", () => mockData);
       this.post("/api/customers", (schema, request) => {
-        const body = JSON.parse(request.requestBody);
-        return { body };
+        const data = JSON.parse(request.requestBody);
+        return data;
       });
     },
   });

@@ -11,7 +11,7 @@ createMockServer();
 
 export default function Home() {
   const { isLoading, error, customers, addCustomer } = useCustomers();
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const customerTable = !isLoading && !error && <CustomersTable customers={customers} />;
   const tableSkeleton = isLoading && (

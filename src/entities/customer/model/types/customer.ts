@@ -16,7 +16,7 @@ export interface Customer {
 }
 
 type OrgCreateDto = Omit<Org, "id" | "created_at" | "updated_at" | "bank_accounts"> & {
-  bank_accounts: (Omit<BankAccounts, "id" | "created_at" | "updated_at"> & { key: string })[];
+  bank_accounts: Omit<BankAccounts, "id" | "created_at" | "updated_at">[];
 };
 export interface CustomerCreateDto {
   name: string;
@@ -24,6 +24,20 @@ export interface CustomerCreateDto {
   deferral_days: number;
   credit_limit: number;
   org: OrgCreateDto;
+  metadata: Record<string, string>;
+  invoice_prefix: string;
+  invoice_emails: string[];
+}
+
+type OrgFormData = Omit<Org, "id" | "created_at" | "updated_at" | "bank_accounts"> & {
+  bank_accounts: (Omit<BankAccounts, "id" | "created_at" | "updated_at"> & { key: string })[];
+};
+export interface CustomerFormData {
+  name: string;
+  email: string;
+  deferral_days: number;
+  credit_limit: number;
+  org: OrgFormData;
   metadata: { keyValue: string; value: string; key: string }[];
   invoice_prefix: string;
   invoice_emails: { key: string; value: string }[];

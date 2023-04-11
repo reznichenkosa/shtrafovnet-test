@@ -1,10 +1,10 @@
-import { CustomerCreateDto } from "@/entities/customer";
+import { CustomerFormData } from "@/entities/customer";
 import { Flex, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { FC } from "react";
 
 interface OrganizationDetailsFormProps {
-  form: UseFormReturnType<CustomerCreateDto, (values: CustomerCreateDto) => CustomerCreateDto>;
+  form: UseFormReturnType<CustomerFormData, (values: CustomerFormData) => CustomerFormData>;
 }
 
 export const OrganizationDetailsForm: FC<OrganizationDetailsFormProps> = ({ form }) => {
