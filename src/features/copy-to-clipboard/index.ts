@@ -1,1 +1,1 @@
-export { CopyToClipboard } from "./ui/copy-to-clipboard";
+export { CopyToClipboard } from "./ui";

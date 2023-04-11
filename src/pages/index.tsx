@@ -2,20 +2,16 @@ import Head from "next/head";
 
 import { createMockServer } from "@/shared/config/mock-server";
 import { useCustomers } from "@/entities/customer";
-import { useState } from "react";
 import { CreateCustomerModal } from "@/widgets/create-customer-modal";
 import { CustomersTable } from "@/widgets/customers-table";
 import { Button, Container, Flex, Skeleton } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 createMockServer();
 
 export default function Home() {
   const { isLoading, error, customers, addCustomer } = useCustomers();
-  const [isOpenCreateCustomerModal, setIsOpenCreateCustomerModal] = useState<boolean>(false);
-
-  const showCreateCustomerModal = () => {
-    setIsOpenCreateCustomerModal(true);
-  };
+  const [opened, { open, close }] = useDisclosure(true);
 
   const customerTable = !isLoading && !error && <CustomersTable customers={customers} />;
   const tableSkeleton = isLoading && (
@@ -38,8 +34,8 @@ export default function Home() {
       <main>
         <Container p="lg" size="lg">
           <Flex align="flex-end" direction="column" gap="lg">
-            <Button onClick={showCreateCustomerModal}>Добавить клиента</Button>
-            <CreateCustomerModal isOpen={isOpenCreateCustomerModal} addCustomer={addCustomer} />
+            <Button onClick={open}>Добавить клиента</Button>
+            <CreateCustomerModal opened={opened} close={close} addCustomer={addCustomer} />
             {customerTable}
             {tableSkeleton}
           </Flex>

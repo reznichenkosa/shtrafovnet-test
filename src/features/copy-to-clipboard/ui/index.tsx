@@ -1,5 +1,5 @@
-import { ActionIcon, Button, Flex } from "@mantine/core";
-import { FC, useState } from "react";
+import { Button, Flex } from "@mantine/core";
+import { FC } from "react";
 import { IconCopy } from "@tabler/icons-react";
 
 interface CopyToClipboardProps {

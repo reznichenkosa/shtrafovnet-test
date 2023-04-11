@@ -22,7 +22,7 @@ export const CustomersTable: FC<CustomersTableProps> = ({ customers }) => {
     </tr>
   ));
   return (
-    <Table>
+    <Table highlightOnHover>
       <thead>
         <tr>
           <th>Имя</th>

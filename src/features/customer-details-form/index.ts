@@ -1,0 +1,1 @@
+export { CustomerDetailsForm } from "./ui";

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Customer } from "../types/customer";
+import { Customer, CustomerCreateDto } from "../types/customer";
 import { getCustomersService } from "../services/get-customers";
 import { addCustomerService } from "../services/add-customer";
 
@@ -8,7 +8,7 @@ export const useCustomers = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [customers, setCustomers] = useState<Customer[]>([]);
 
-  const addCustomer = useCallback((newCustomer: Customer) => {
+  const addCustomer = useCallback((newCustomer: CustomerCreateDto) => {
     addCustomerService(newCustomer).then((response) =>
       setCustomers((prevValue) => [...prevValue, response])
     );

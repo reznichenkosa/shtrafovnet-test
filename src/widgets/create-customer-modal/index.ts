@@ -1,1 +1,1 @@
-export { CreateCustomerModal } from "./ui/create-customer-modal";
+export { CreateCustomerModal } from "./ui";
